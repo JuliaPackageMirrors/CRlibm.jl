@@ -12,15 +12,16 @@ suffix = ""
 end
 
 @windows_only begin
-    error("Package not currently available on Windows")
+    warn("CRlibm is not currently available on Windows. An MPFR wrapper will be used.")
 end
 
-lib_name = "crlibm-1.0beta4"
+libname = "crlibm-1.0beta5"
+filename = string(libname, ".tgz")
 
 src_dir = "src"
 cd(src_dir)
 
-file = "http://lipforge.ens-lyon.fr/frs/download.php/162/$(lib_name).tar.gz"
+file = "http://lipforge.ens-lyon.fr/frs/download.php/162/$(filename)"
 
 println("Downloading the library files from $file")
 println("Working in ", pwd())
@@ -28,7 +29,7 @@ println("Working in ", pwd())
 
 run(`$(my_download) $file`)
 #download(file)
-run(`tar xzf $(lib_name).tar.gz`)
+run(`tar xzf $(filename)`)
 
 #srcdir = "$(src_dir)/$(lib_name)"
 
